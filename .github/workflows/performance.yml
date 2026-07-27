@@ -1,6 +1,5 @@
 name: Performance Regression Testing
 
-# Триггер: запускаем воркфлоу при каждом push или Pull Request в ветку main
 on:
   push:
     branches: [ main, master ]
@@ -13,12 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Скачиваем код репозитория в контейнер
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Запускаем k6 с помощью официального Action от разработчиков k6
+      # Указываем точную рабочую версию экшена от Grafana
       - name: Run k6 local test
-        uses: grafana/k6-action@v1
+        uses: grafana/k6-action@v0.3.1
         with:
           filename: test.js
